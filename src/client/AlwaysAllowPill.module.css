@@ -1,0 +1,77 @@
+/* The overlay layer is click-through, so the pill opts back into pointer events.
+   The rank clears the host's modal mask (z-index 1000): while an approval is
+   waiting the action must stay clickable even when the transcript sits under a
+   dimming layer, which is exactly the state this button exists for. */
+.root {
+  position: fixed;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: min(560px, calc(100vw - 48px));
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+/* Keep the label on one line: the overlay layer gives no width, so a shrinking
+   parent would otherwise squeeze the button to a few dozen pixels.
+
+   The action is a warning, not a neutral choice: it widens the allowlist for a
+   whole command family. Host Button has no danger variant, so its outline family
+   keeps the geometry while these declarations carry the state colour — text and
+   a 1px state border (the spec's weight for status outlines), with the danger
+   hover fill. */
+.root button {
+  white-space: nowrap;
+  flex: 0 0 auto;
+  color: var(--dsw-alias-state-error-primary);
+  border: 1px solid var(--dsw-alias-state-error-primary);
+  background: transparent;
+  transition:
+    background-color var(--ds-transition-duration-fast) var(--ds-ease-in-out),
+    border-color var(--ds-transition-duration-fast) var(--ds-ease-in-out);
+}
+
+.root button:hover:not(:disabled) {
+  background: var(--dsw-alias-interactive-hover-danger);
+}
+
+.root button:focus-visible {
+  outline: var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color, var(--dsw-alias-state-business-primary));
+  outline-offset: 2px;
+}
+
+/* The command the action covers. One line, truncated, because an approval can
+   carry a very long command line and the pill must not grow with it. */
+.command {
+  font: var(--dsw-font-xxs-12);
+  color: var(--dsw-alias-label-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 260px;
+  flex: 0 1 auto;
+}
+
+.note {
+  font: var(--dsw-font-xxs-12);
+  color: var(--dsw-alias-state-success-primary);
+  background: var(--dsw-alias-bg-overlay);
+  border-radius: var(--dsw-radius-sm);
+  padding: 2px 6px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+@media (pointer: coarse) {
+  .root button {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root button {
+    transition: none;
+  }
+}

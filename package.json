@@ -1,0 +1,130 @@
+{
+  "name": "@guowenzhang/dsh-permission-whitelist",
+  "description": "Claude Code permission rules for DeepSeek Harness: allow, ask, and deny shell commands from settings.json without approval prompts",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhang-guo-wen/dsh-permission-whitelist.git"
+  },
+  "homepage": "https://github.com/zhang-guo-wen/dsh-permission-whitelist#readme",
+  "bugs": {
+    "url": "https://github.com/zhang-guo-wen/dsh-permission-whitelist/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "permissions",
+    "allowlist",
+    "sandbox"
+  ],
+  "main": "lib/index.mjs",
+  "exports": {
+    ".": {
+      "default": "./lib/index.mjs"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "engines": {
+    "dsh": ">=0.1.7-0"
+  },
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-api-gateway",
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-store",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-chat",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ],
+      "platform": "web",
+      "immediately": true
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "lib/*.mjs",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown -c tsdown.config.ts && node build-client.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.client.json",
+    "test": "node --test --test-isolation=none tests/*.test.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-sandbox": ">=0.1.7-0",
+    "@deepseek-ai/dsh-sandbox-policy": ">=0.1.7-0",
+    "@deepseek-ai/dsh-tools": ">=0.1.7-0",
+    "@deepseek-ai/dsh-typert-protocol": ">=0.1.7-0",
+    "@deepseek-ai/schemastery": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-sandbox": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-sandbox-policy": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-typert-protocol": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.3",
+    "@deepseek-ai/dsh-api-session-controller": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-locale": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-store": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-ui-approval": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-ui-conversation": "^0.1.7-rc.2",
+    "@deepseek-ai/dsh-client-ui-layout": "^0.1.7-rc.2",
+    "@deepseek-ai/dsh-client-ui-primitives": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-ui-renderer": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-ui-session": "^0.1.7-rc.2",
+    "@deepseek-ai/dsh-client-ui-settings": ">=0.1.7-0",
+    "@deepseek-ai/dsh-client-ui-slots": ">=0.1.7-0",
+    "@deepseek-ai/dsh-sandbox": ">=0.1.7-0",
+    "@deepseek-ai/dsh-sandbox-policy": ">=0.1.7-0",
+    "@deepseek-ai/dsh-tools": ">=0.1.7-0",
+    "@deepseek-ai/dsh-typert-protocol": ">=0.1.7-0",
+    "@deepseek-ai/schemastery": "^3.18.3",
+    "@types/node": "^26.5.0",
+    "@types/react": "~18.3.1",
+    "lightningcss": "^1.32.0",
+    "rolldown": "^1.0.0",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3"
+  }
+}

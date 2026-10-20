@@ -1,0 +1,104 @@
+/*
+ * The section renders straight into the host settings column: the shell owns
+ * the 24px inset, the panel width and the scroll, so this file styles the
+ * section body only.
+ *
+ * Rows follow the host's own settings-row recipe (copy left, switch right, one
+ * hairline between rows) rather than a card surface, so the section reads as a
+ * sibling of the host pages. Sizes come from the `--dsw-font-*` shorthand
+ * tokens: each token is a complete `size/line-height family` font declaration,
+ * so it is consumed through `font`, never through `font-size`.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--dsw-alias-label-primary);
+  font: var(--dsw-font-xs-13);
+}
+
+.heading {
+  margin: 0 0 2px;
+  font: var(--dsw-font-s-14);
+  font-weight: 500;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--dsw-alias-border-l2);
+}
+
+/* The column's last row ends the group, so it carries no trailing rule. */
+.rows > .row:last-child {
+  border-bottom: none;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font: var(--dsw-font-s-14);
+}
+
+/* One line per switch, stating the state it is in; long paths and Chinese copy
+ * have to break rather than run past the column edge. */
+.line {
+  font: var(--dsw-font-xxs-12);
+  color: var(--dsw-alias-label-secondary);
+  overflow-wrap: anywhere;
+}
+
+.note {
+  font: var(--dsw-font-xxs-12);
+  color: var(--dsw-alias-label-tertiary);
+  overflow-wrap: anywhere;
+}
+
+.row[data-phase='failed'] .note {
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.row[data-phase='saved'] .note {
+  color: var(--dsw-alias-state-success-primary);
+}
+
+/* Where the file comes from and when a change applies; the hairline sets it
+ * apart from the switches it comments on. */
+.footnote {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--dsw-alias-border-l2);
+  font: var(--dsw-font-xxs-12);
+  color: var(--dsw-alias-label-tertiary);
+  overflow-wrap: anywhere;
+}
+
+.footnoteTitle {
+  font: var(--dsw-font-xs-13);
+  color: var(--dsw-alias-label-secondary);
+}
+
+/* The row is the touch target even though the host Switch keeps its own box;
+ * the whole row is not a control, so no div takes a click. */
+@media (pointer: coarse) {
+  .row {
+    min-height: 44px;
+  }
+}

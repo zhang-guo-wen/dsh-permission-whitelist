@@ -1,0 +1,3 @@
+- insert:
+    - id: permission-whitelist
+      name: '@guowenzhang/dsh-permission-whitelist'
