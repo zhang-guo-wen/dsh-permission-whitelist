@@ -2,6 +2,8 @@ English | [中文](README.zh.md)
 
 # @guowenzhang/dsh-permission-whitelist
 
+> **Status: unstable.** This plugin is in early development. Configuration fields, rule-matching semantics and the sandbox-bypass behavior may change between minor releases without a migration path, and there is no compatibility or support guarantee yet. Pin an exact version if you need reproducible installs, and re-read the security properties before upgrading.
+
 Claude Code permission rules for DeepSeek Harness. Shell and file tool calls
 are allowed, sent for approval, or denied from the `permissions` block of a
 Claude Code `settings.json` — before the command runs, so an allowlisted command

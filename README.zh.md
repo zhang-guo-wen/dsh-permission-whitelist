@@ -2,6 +2,8 @@
 
 # @guowenzhang/dsh-permission-whitelist
 
+> **状态：不稳定版本。** 本插件仍在早期开发中，配置字段、规则匹配语义与沙箱绕过行为可能在次版本之间发生不兼容变更，且暂无兼容性与支持承诺。需要可复现的安装时请锁定精确版本，升级前先重读安全属性一节。
+
 给 DeepSeek Harness 用的 Claude Code 权限规则。shell 与文件工具调用会按 Claude Code
 `settings.json` 里的 `permissions` 段，在**命令执行之前**决定放行、询问或拒绝，因此
 白名单里的命令不会先失败一次再重试。
