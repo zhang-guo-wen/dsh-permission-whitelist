@@ -135,10 +135,10 @@ the replaced bytes are kept beside it.
 ## Development
 
 ```sh
-npm install
-npm run typecheck
-npm test        # 25 behavior and host-contract tests against lib/
-npm run build
+pnpm install
+pnpm run typecheck
+pnpm test        # 25 behavior and host-contract tests against lib/
+pnpm run build
 ```
 
 `tests/verify-instance.mjs` prints the decision for a set of commands against a

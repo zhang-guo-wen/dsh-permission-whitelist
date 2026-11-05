@@ -2,6 +2,7 @@
   "name": "@guowenzhang/dsh-permission-whitelist",
   "description": "Claude Code permission rules for DeepSeek Harness: allow, ask, and deny shell commands from settings.json without approval prompts",
   "version": "0.1.0",
+  "packageManager": "pnpm@11.28.9",
   "type": "module",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -104,6 +105,8 @@
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "^4.0.3",
+    "@deepseek-ai/dsh-agent": "0.1.7-rc.2",
+    "@deepseek-ai/dsh-api-gateway": "0.1.7-rc.2",
     "@deepseek-ai/dsh-api-session-controller": ">=0.1.7-0",
     "@deepseek-ai/dsh-client-locale": ">=0.1.7-0",
     "@deepseek-ai/dsh-client-store": ">=0.1.7-0",

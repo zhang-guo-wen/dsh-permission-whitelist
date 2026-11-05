@@ -112,10 +112,10 @@ harness 每个平台各有一个。
 ## 开发
 
 ```sh
-npm install
-npm run typecheck
-npm test        # 25 个行为与宿主契约测试，跑的是 lib/ 产物
-npm run build
+pnpm install
+pnpm run typecheck
+pnpm test        # 25 个行为与宿主契约测试，跑的是 lib/ 产物
+pnpm run build
 ```
 
 `tests/verify-instance.mjs` 会针对真实的 `.claude/settings.json` 打印一组命令的判定结果，
